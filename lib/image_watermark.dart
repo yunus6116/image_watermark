@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:flutter/material.dart';
 import 'package:image/image.dart' as ui;
 
 class ImageWatermark {
@@ -33,7 +32,7 @@ class ImageWatermark {
     ui.BitmapFont? font,
 
     ///Text color
-    Color color = Colors.black,
+    //Color color = Colors.black,
 
     ///Text right justification
     bool rightJustify = false,
@@ -44,11 +43,10 @@ class ImageWatermark {
     ///Add Watermark
     ui.drawString(
       originalImage,
-      font ?? ui.arial_48,
-      dstX,
-      dstY,
+      font: font ?? ui.arial48,
+      x: dstX,
+      y: dstY,
       watermarkText,
-      color: color.value,
       rightJustify: rightJustify,
     );
 
@@ -82,17 +80,17 @@ class ImageWatermark {
     ui.BitmapFont? font,
 
     ///Text color (default black)
-    Color color = Colors.black,
+    //Color color = Colors.black,
   }) async {
     ///Original Image
     final originalImage = ui.decodeImage(imgBytes)!;
 
     ///Add Watermark
-    ui.drawStringCentered(
+    ui.drawString(
       originalImage,
-      font ?? ui.arial_48,
+      font: font ?? ui.arial48,
       watermarktext,
-      color: color.value,
+      //color: color,
     );
 
     ///Encode image to PNG
@@ -132,13 +130,12 @@ class ImageWatermark {
 
     // add watermark over originalImage
     // initialize width and height of watermark image
-    final image = ui.Image(imgHeight, imgWidth);
-    ui.drawImage(image, watermark);
+    final image = ui.Image(height: imgHeight, width: imgWidth);
 
     // give position to watermark over image
-    ui.copyInto(
-      original,
+    ui.compositeImage(
       image,
+      watermark,
       dstX: dstX,
       dstY: dstY,
     );

@@ -89,9 +89,9 @@ class HomeScreenState extends State<HomeScreen> {
                       width: 600,
                       height: 250,
                       child: _image == null
-                          ? Column(
+                          ? const Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Icon(Icons.add_a_photo),
                                 SizedBox(
                                   height: 10,
